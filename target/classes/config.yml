@@ -1,0 +1,21 @@
+# Dakika cinsindendir. Önerilen Min 10-30
+IntervalTick: 30
+# Buradan yeni komutlar oluşturabilirsiniz
+# Yeni başlıklar ekleyebilir veya başlıkları düzenleyerek
+# istediğiniz kadar süre sorgulu işlem üretebilirsiniz.
+Commands:
+   vip:
+      start:
+      - "manuadd %player% vip"
+      - "msg %player% VIP alıp bizi desteklediğiniz için teşekkürler."
+      end:
+      - "manudel %player% vip"
+      - "msg %player% VIP'inizin süresi bitmiştir."
+   mvip:
+      start:
+      - "manuadd %player% mvip"
+      - "msg %player% VIP alıp bizi desteklediğiniz için teşekkürler."
+      end:
+      - "manudel %player% mvip"
+      - "msg %player% VIP'inizin süresi bitmiştir."
+   
