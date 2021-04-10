@@ -16,7 +16,8 @@ public class ConnectionPool {
 	
 	public static Connection getConnection() throws SQLException, ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
-        return DriverManager.getConnection("jdbc:sqlite:" + Main.instance.getDataFolder() + "\\Database.db");
+		File databaseFile = new File("plugins/ExpiryCommand/Database.db");
+        return DriverManager.getConnection("jdbc:sqlite:" + databaseFile.getParentFile().getAbsolutePath() + "/Database.db");
     }
 
     public static void closePool() throws SQLException {
@@ -26,12 +27,12 @@ public class ConnectionPool {
     }
 	
 	public static void initsqlite() {
-		File databaseFile = new File(Main.instance.getDataFolder(), "Database.db");
+		File databaseFile = new File("plugins/ExpiryCommand/Database.db");
 		Bukkit.getConsoleSender().sendMessage(Main.color("&bLeader&fOS&c ExpiryCommand &6Developed by Geik"));
 		if (!databaseFile.exists()) {
 	    	try {
 	    		Class.forName("org.sqlite.JDBC");
-	    		String url = "jdbc:sqlite:" + Main.instance.getDataFolder() + "\\Database.db";
+	    		String url = "jdbc:sqlite:" + databaseFile.getParentFile().getAbsolutePath() + "/Database.db";
 	    		conn = DriverManager.getConnection(url);
 	    		
 	    	} catch(SQLException | ClassNotFoundException e) {

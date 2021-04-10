@@ -139,6 +139,22 @@ public class DatabaseQueries {
             return returnValue;
         }
 	}
+	public static int migrationCommandInterval(String name, String product, long startTime, long expireday) throws SQLException, ClassNotFoundException {
+		String SQL_QUERY = "INSERT INTO Tablo (username, command, creationTime, expireTime) VALUES (?, ?, ?, ?)";
+        try (Connection con = ConnectionPool.getConnection()) {
+            PreparedStatement pst = con.prepareStatement(SQL_QUERY);
+
+            pst.setString(1, name);
+            pst.setString(2, product);
+            pst.setString(3, String.valueOf(startTime));
+            pst.setString(4, String.valueOf(expireday));
+
+            int returnValue = pst.executeUpdate();
+        	
+            pst.close();
+            return returnValue;
+        }
+	}
 	public static int accumulateTime(String name, String product, int day) throws SQLException, ClassNotFoundException {
 		String SQL_QUERY = "UPDATE Tablo SET expireTime = ? WHERE username = ? AND command = ?";
         try (Connection con = ConnectionPool.getConnection()) {
